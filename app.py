@@ -126,28 +126,36 @@ def delete_workflow(id):
     return redirect("/")
 
 #to view the history
-@app.route("/history/<int:id>")
-def history(id):
+@app.route('/history/<int:workflow_id>')
+def history(workflow_id):
 
     conn = get_db_connection()
-    cur = conn.cursor()
+    cursor = conn.cursor()
 
-    cur.execute("""
-        SELECT version_number,created_at
+    cursor.execute("""
+        SELECT version_number, configuration, created_at
         FROM workflow_versions
-        WHERE workflow_id=%s
-        ORDER BY version_number DESC
-    """,(id,))
+        WHERE workflow_id = %s
+        ORDER BY version_number
+    """, (workflow_id,))
 
-    versions = cur.fetchall()
+    rows = cursor.fetchall()
 
+    versions = []
+    for r in rows:
+        config = json.loads(r[1])
+        stages = ", ".join(config["stages"])
+
+        versions.append({
+            "version": r[0],
+            "stages": stages,
+            "date": r[2]
+        })
+
+    cursor.close()
     conn.close()
 
-    return render_template(
-        "history.html",
-        versions=versions,
-        workflow_id=id
-    )
+    return render_template("history.html", versions=versions, workflow_id=workflow_id)
 
 #to compare the versions
 @app.route("/compare/<int:id>", methods=["POST"])

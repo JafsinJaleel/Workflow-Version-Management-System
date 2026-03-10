@@ -14,13 +14,16 @@
                 <th>Version 1</th>
                 <th>Version 2</th>
                 <th>Version Number</th>
+                <th>Stages</th>
                 <th>Date</th>
             </tr>
             {% for v in versions %}
             <tr>
-                <td><input type="radio" name="version1" value="{{v[0]}}" required></td>
-                <td><input type="radio" name="version2" value="{{v[0]}}" required></td>
-                <td>{{v[0]}}</td><td>{{v[1]}}</td>
+                <td><input type="radio" name="version1" value="{{v.version}}" required></td>
+                <td><input type="radio" name="version2" value="{{v.version}}" required></td>
+                <td>{{v.version}}</td>
+                <td>{{v.stages}}</td>
+                <td>{{v.date}}</td>
             </tr>
             {% endfor %}
         </table>
