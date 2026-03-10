@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Workflow</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+<div class="container">
+    <h2>Create Workflow</h2>
+    <form method="POST" action="/create-workflow">
+        <label>Workflow Name</label>
+        <input type="text" name="name" required>
+        <label>Description</label>
+        <textarea name="description"></textarea>
+        <h3>Stages</h3>
+        <div id="stages-container">
+            <div class="stage-field">
+                <input type="text" name="stages" placeholder="Stage Name">
+                <button type="button" onclick="removeStage(this)">Remove</button>
+            </div>
+        </div>
+        <button type="button" onclick="addStage()">Add Stage</button>
+        <br><br>
+        <button type="submit">Create Workflow</button>
+    </form>
+</div>
+<script src="/static/script.js"></script>
+</body>
+</html>

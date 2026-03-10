@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Version Comparison</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+<div class="container">
+    <h2>Version Difference</h2>
+    <div class="card">
+        {% for line in diff %}
+        <p>
+            {% if line.startswith('+') %}
+            <span class="diff-added">{{line}}</span>
+            {% elif line.startswith('-') %}
+            <span class="diff-removed">{{line}}</span>
+            {% else %}
+            {{line}}
+            {% endif %}
+        </p>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>

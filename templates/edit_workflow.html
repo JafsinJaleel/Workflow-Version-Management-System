@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Workflow</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+<div class="container">
+    <h2>Edit Workflow</h2>
+    <form method="POST" action="/update/{{workflow[0]}}">
+        <label>Workflow Name</label>
+        <input type="text" name="name" value="{{workflow[1]}}" readonly>
+        <label>Description</label>
+        <textarea name="description" readonly>{{workflow[2]}}</textarea>
+        <h3>Edit Stages</h3>
+        <div id="stages-container">
+            <div class="stage-field">
+                <input type="text" name="stages" placeholder="Enter Stage Name">
+                <button type="button" onclick="removeStage(this)">Remove</button>
+            </div>
+        </div>
+        <br>
+        <button type="button" onclick="addStage()">Add Stage</button>
+        <br><br>
+        <button type="submit">Update Workflow</button>
+    </form>
+</div>
+<script src="/static/script.js"></script>
+</body>
+</html>

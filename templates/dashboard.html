@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Workflow Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+<div class="container">
+    <div class="top-bar">
+        <h1>Workflow Versioning System</h1>
+        <a href="/create">
+            <button class="create-btn">Create Workflow</button>
+        </a>
+    </div>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Version</th>
+            <th>Actions</th>
+        </tr>
+        {% for workflow in workflows %}
+        <tr>
+            <td>{{workflow[1]}}</td>
+            <td>{{workflow[2]}}</td>
+            <td>{{workflow[3]}}</td>
+            <td>
+                <a href="/edit/{{workflow[0]}}">
+                    <button>Edit</button>
+                </a>
+
+                <a href="/history/{{workflow[0]}}">
+                    <button>History</button>
+                </a>
+
+                <a href="/delete/{{workflow[0]}}" onclick="return confirm('Delete this workflow?')">
+                    <button style="background:#ff4d4d">Delete</button>
+                </a>
+
+            </td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>
